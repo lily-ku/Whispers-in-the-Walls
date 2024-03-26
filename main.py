@@ -1,4 +1,4 @@
-import os, sys, time
+import os, time
 
 # Colours
 cyan = "\u001b[36m"
@@ -9,13 +9,17 @@ reverse = "\u001b[7m"
 
 INVENTORY = []
 
+with open("death.txt", encoding = "utf-8") as f:
+    death_splash = f.read()
+
 # Functions
 def death():
     clear()
-    print(f"{red}D E A T H{normal}")
-    print(f"{cyan}You've offered all you could.")
+    print(f"{red}{death_splash}{normal}")
+    print("")
+    print(f"{cyan}We had our hopes for you.")
     p()
-    print(f"{cyan}For that, at least, you are thanked.{normal}")
+    print(f"{cyan}Unfortunately, we cannot save everyone, as you have made apparent.{normal}")
     p()
     exit()
 
@@ -31,7 +35,7 @@ def invalid():
     exit()
 
 def p():
-    time.sleep(3)
+    time.sleep(2)
 
 def pd(seconds):
     time.sleep(seconds)
@@ -105,7 +109,7 @@ def right_door():
     p()
     print("You don't remember why you're here, do you?")
     p()
-    print("...Wait this seems oddly familiar. You were just here, weren't you?")
+    print("...Wait, this seems oddly familiar. You were just here, weren't you?")
     p()
     print("Well, anyway, there's a door to your right, maybe you should check that out first.")
     p()
@@ -150,18 +154,20 @@ def wall_art_2():
 def right_door_2():
     clear()
     tab()
-    print("You step into a room with an immediate change in air quality.")
+    print("You step into a room, a new room.")
     p()
-    print("You can't stop coughing.")
+    print("The air is thick, swirling with particles that obscure your vision.")
     p()
-    print("Upon trying to catch your breath, you inhale an object.")
+    print("You start coughing, and your lungs begin to close.")
+    p()
+    print("As you struggle to catch your breath, you inhale an unknown object.")
     p()
     print(f"{red}You're choking.")
     s()
     print(f"{red}This wasn't supposed to happen, why did you have to cough so damn much!?")
     s()
     print(f"{red}Now she has to find another guy to do all this. Your weakness is shameful.{normal}")
-    p()
+    s()
 
     if "Pen" in INVENTORY:
         choose (
@@ -211,7 +217,7 @@ def pen_rescue():
     if choice == "left":
         left_door_pass()
     elif choice == "right":
-        right_door_pass()
+        right_door_attempt()
     else:
         invalid()
 
@@ -254,8 +260,47 @@ def left_passcode_correct():
     else:
         death()
 
+def right_door_attempt():
+    clear()
+    tab()
+    print("You approach the door on your right.")
+    p()
+    print("But are you positive you wish to go through this door?")
+    p()
+    print("Have you tried the left door yet?")
+    p()
+
+    choose (
+        f"Go {cyan}back {normal}to the left door",
+        f"{cyan}Ignore {normal}his advances and continue to the right door"
+    )
+
+    choice = input("Choice: ")
+
+    if choice == "back":
+        left_door_pass()
+    elif choice == "ignore":
+        right_door_pass()
+
 def right_door_pass():
     clear()
+    tab()
+    print("You continue to the door on your right, ignoring the whisper's push.")
+    p()
+    print("What do you think the passcode is?")
+    p()
+    print(f"Guess very carefully. It's only 3 digits. {red}Don't mess it up.{normal}")
+
+    code = input("Code: ")
+
+    if code == "321":
+        weapons_room()
+    else:
+        death()
+
+def weapons_room():
+    clear()
+    tab()
     print("Incomplete")
     exit()
 
