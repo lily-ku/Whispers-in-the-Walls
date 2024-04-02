@@ -138,7 +138,7 @@ def wall_art_2():
     p()
     print("You... can't read it?")
     p()
-    print("Ah, well I'm sure she had a reason for that.")
+    print("Ah, well, I guess that's what you get for being in that stuff, huh?")
 
     choose (
         f"Check the {cyan}door {normal}to your right"
@@ -166,7 +166,7 @@ def right_door_2():
     s()
     print(f"{red}This wasn't supposed to happen, why did you have to cough so damn much!?")
     s()
-    print(f"{red}Now she has to find another guy to do all this. Your weakness is shameful.{normal}")
+    print(f"{red}Now she has to find another guy to do all this! Your weakness is shameful.{normal}")
     s()
 
     if "Pen" in INVENTORY:
